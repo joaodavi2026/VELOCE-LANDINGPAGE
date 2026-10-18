@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="theme-color" content="#050505">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter+Tight:wght@400;500;600&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+html{scroll-behavior:smooth;scroll-padding-top:0}
+body{margin:0;background:#050505;color:#F5F5F5;font-family:'Manrope',Helvetica,Arial,sans-serif;overflow-x:hidden}
+a{color:#FF8A00;text-decoration:none}a:hover{color:#F5F5F5}
+@keyframes rise{from{opacity:0;transform:translateY(60px)}to{opacity:1;transform:none}}
+@keyframes zoomin{from{opacity:0;transform:scale(1.12)}to{opacity:1;transform:none}}
+@keyframes bar{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@media(max-width:1180px){[data-dl]{display:none!important}[data-mb]{display:flex!important}}
+@media(max-width:860px){[data-pad]{padding-left:22px!important;padding-right:22px!important}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+@media print{[data-np]{display:none!important}body{background:#fff!important}#specs{background:#fff!important;padding:20px!important}#specs *{color:#000!important;background:none!important;border-color:#999!important}}
+</style>
+</helmet>
+
+<div style="position:fixed;top:0;left:0;height:2px;width:100%;z-index:100;transform-origin:0 50%;background:#FF6A00;transform:scaleX({{ progress }})" data-np="1"></div>
+
+<header data-np="1" style="position:fixed;top:0;left:0;right:0;z-index:90;display:flex;align-items:center;justify-content:space-between;padding:22px clamp(24px,8vw,140px);transition:background .4s,padding .4s;background:{{ navBg }}" data-pad="1">
+  <a href="#home" style="font-family:'Space Grotesk','Inter Tight',sans-serif;font-weight:700;letter-spacing:.1em;font-size:26px;;color:#F5F5F5">VÉLOCE</a>
+  <nav data-dl="1" style="display:flex;gap:22px">
+    <sc-for list="{{ links }}" as="l" hint-placeholder-count="9"><a href="#{{ l.id }}" style="font-size:11px;letter-spacing:.14em;font-weight:600;color:#F5F5F5;white-space:nowrap" style-hover="color:#FF6A00">{{ l.t }}</a></sc-for>
+  </nav>
+  <button data-mb="1" onClick="{{ toggleMenu }}" aria-label="Menu" style="display:none;flex-direction:column;gap:6px;background:none;border:0;padding:10px;cursor:pointer;z-index:95"><span style="width:28px;height:2px;background:#F5F5F5;display:block;transition:.3s;transform:{{ bar1 }}"></span><span style="width:28px;height:2px;background:#F5F5F5;display:block;transition:.3s;transform:{{ bar2 }}"></span></button>
+</header>
+
+<div data-np="1" style="position:fixed;inset:0;z-index:85;background:#050505;display:flex;flex-direction:column;justify-content:center;gap:6px;padding:0 32px;transition:clip-path .6s cubic-bezier(.7,0,.2,1);clip-path:{{ menuClip }}">
+  <sc-for list="{{ links }}" as="l" hint-placeholder-count="9"><a href="#{{ l.id }}" onClick="{{ closeMenu }}" style="font-family:'Space Grotesk','Inter Tight',sans-serif;font-weight:700;letter-spacing:-.03em;font-size:8.5vw;line-height:1.05;text-transform:uppercase;color:#F5F5F5">{{ l.t }}</a></sc-for>
+</div>
+
+<section id="home" data-np="1" style="position:relative;height:100vh;min-height:520px;overflow:hidden;background:#050505">
+  <div style="position:absolute;z-index:2;pointer-events:none;top:15vh;left:0;right:0;text-align:center;font-family:'Space Grotesk','Inter Tight',sans-serif;font-weight:700;letter-spacing:-.03em;font-size:min(16vw,22vh);line-height:1.2;color:#FF6A00;letter-spacing:.01em;white-space:nowrap;animation:rise 1.4s cubic-bezier(.2,.7,.2,1) both;background:linear-gradient(#FF8A00,#FF6A00 55%,#a33f00);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">VÉLOCE</div>
+  <video id="herov" src="uploads/Orange_hypercar_racing_at_night_20261018125130.mp4" loop playsinline preload="auto" data-silent="1" aria-label="Véloce One em movimento" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:zoomin 1.8s .2s cubic-bezier(.2,.7,.2,1) both"></video>
+  <div style="position:absolute;inset:0;background:linear-gradient(to top,#050505 2%,rgba(5,5,5,.55) 22%,transparent 45%),linear-gradient(rgba(5,5,5,.55),transparent 25%)"></div>
+  <div data-pad="1" style="position:absolute;left:48px;right:48px;bottom:24px;z-index:3;display:flex;flex-wrap:wrap;gap:16px 32px;align-items:flex-end;justify-content:space-between;animation:rise 1.2s .9s cubic-bezier(.2,.7,.2,1) both">
+    <div style="flex:1 1 220px;max-width:420px;position:relative;z-index:3">
+      <div style="font-family:'Space Grotesk','Inter Tight',sans-serif;font-weight:700;letter-spacing:.1em;font-size:clamp(26px,3vw,44px);line-height:1;">VÉLOCE ONE</div>
+      <div style="margin-top:6px;font-size:13px;letter-spacing:.38em;color:#FF8A00;font-weight:700">ALÉM DA VELOCIDADE.</div>
+      <p style="text-wrap:pretty;margin:6px 0 0;font-size:13px;color:#8E8E93;line-height:1.6">O futuro da performance não espera.</p>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:16px 32px">
+      <sc-for list="{{ heroSpecs }}" as="s" hint-placeholder-count="3"><div><div style="font-family:'Space Grotesk','Inter Tight',sans-serif;font-weight:700;letter-spacing:-.03em;font-size:clamp(24px,2.6vw,38px);line-height:1">{{ s.v }}<span style="font-size:.4em;color:#FF6A00;margin-left:6px">{{ s.u }}</span></div><div style="margin-top:6px;font-size:11px;letter-spacing:.18em;color:#8E8E93;text-transform:uppercase">{{ s.l }}</div></div></sc-for>
+    </div>
+    <a href="#one" style="display:inline-flex;align-items:center;gap:14px;padding:15px 28px;background:#FF6A00;color:#050505;font-weight:700;font-size:13px;letter-spacing:.2em;transition:.3s" style-hover="background:#FF8A00;color:#050505;gap:22px">CONHEÇA O ONE <span>→</span></a>
+  </div>
+</section>
+
+<section id="one" data-np="1" style="position:relative;padding:160px clamp(24px,8vw,140px) 0;background:#050505" data-pad="1">
+  <div data-r="1" style="font-size:12px;letter-spacing:.4em;color:#FF6A00;font-weight:700">01 / O VEÍCULO</div>
+  <h2 data-r="1" style="text-wrap:balance;font-family:'Space Grotesk','Inter Tight',sans-serif;font-weight:700;letter-spacing:-.03em;margin:28px 0 0;font-size:clamp(34px,5.4vw,80px);line-height:1.04;max-width:14em;text-wrap:balance;color:#F5F5F5">MAIS QUE UM CARRO.<br><span style="color:#FF6A00">UMA NOVA REFERÊNCIA.</span></h2>
+  <p data-r="1" style="text-wrap:pretty;margin:36px 0 0;max-width:560px;font-size:17px;line-height:1.75;color:#b4b4b9;text-wrap:pretty">O VÉLOCE ONE é um hipercarro elétrico conceitual desenvolvido para explorar os limites da tecnologia, da dinâmica veicular e da aerodinâmica.</p>
+  <div style="position:relative;margin:72px calc(-1*clamp(24px,8vw,140px)) 0">
+    <img src="assets/side.png" alt="Véloce One, vista lateral" style="display:block;width:100%;height:min(80vh,90vw);object-fit:cover;object-position:center 58%;-webkit-mask-image:linear-gradient(to bottom,transparent,#000 18%,#000 82%,transparent);mask-image:linear-gradient(to bottom,transparent,#000 18%,#000 82%,transparent)">
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:48px;padding-bottom:160px;margin-top:56px">
+    
+    <p data-r="1" style="text-wrap:pretty;margin:0;font-size:15px;line-height:1.8;color:#8E8E93">A visão da marca parte de um princípio: velocidade só emociona quando é consequência de boa engenharia. Cada decisão, da arquitetura elétrica às superfícies da carroceria, serve a um único propósito, entregar uma resposta imediata e precisa ao motorista.</p>
+    <p data-r="1" style="text-wrap:pretty;margin:0;font-size:15px;line-height:1.8;color:#8E8E93">O projeto busca equilíbrio entre racionalidade e emoção: massa baixa e bem distribuída, tração inteligente, aerodinâmica integrada ao desenho e um cockpit focado em quem conduz. Um conceito para provocar a pergunta de até onde um carro elétrico pode ir.</p>
+  </div>
+</section>
+
+<section id="performance" data-np="1" style="position:relative;background:#050505">
+  <div style="position:relative;height:100vh;min-height:620px;overflow:hidden">
+    <img src="assets/front.png" alt="Véloce One, vista frontal" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 58%">
+    <div style="position:absolute;inset:0;background:linear-gradient(to bottom,#050505 0%,transparent 22%,transparent 45%,#050505 100%)"></div>
+    <div data-pad="1" style="position:absolute;left:48px;right:48px;bottom:48px">
+      <div style="font-size:12px;letter-spacing:.4em;color:#FF6A00;font-weight:700">02 / PERFORMANCE</div>
+      <h2 data-r="1" style="text-wrap:balance;margin:20px 0 0;font-family:'Space Grotesk','Inter Tight',sans-serif;font-weight:700;letter-spacing:-.03em;font-size:clamp(38px,6.4vw,100px);line-height:1.04">FEITO PARA DESAFIAR LIMITES.</h2>
+    </div>
+  </div>
+  <div data-pad="1" style="padding:60px clamp(24px,8vw,140px) 40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));border-top:1px solid #2a2a2e;border-bottom:1px solid #2a2a2e;margin:0 48px;padding:0">
+    <sc-for list="{{ stats }}" as="s" hint-placeholder-count="4"><div data-r="1" style="padding:56px 28px;border-left:1px solid #2a2a2e"><div style="font-family:'Space Grotesk','Inter Tight',sans-serif;font-weight:700;letter-spacing:-.03em;font-size:clamp(48px,6vw,92px);line-height:1;color:#F5F5F5"><span data-count="{{ s.n }}" data-dec="{{ s.d }}">0</span><span style="font-size:.3em;color:#FF6A00;margin-left:8px">{{ s.u }}</span></div><div style="margin-top:12px;font-size:12px;letter-spacing:.2em;color:#8E8E93;text-transform:uppercase">{{ s.l }}</div></div></sc-for>
+  </div>
+
+  <div data-pad="1" style="padding:140px clamp(24px,8vw,140px) 0;max-width:1400px;margin:0 auto">
+    <sc-for list="{{ perf }}" as="p" hint-placeholder-count="4">
+      <div data-r="1" style="display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.4fr);gap:24px 60px;padding:44px 0;border-top:1px solid #2a2a2e">
+        <div><div style="font-size:12px;color:#FF6A00;letter-spacing:.3em;font-weight:700">{{ p.n }}</div><h3 style="text-wrap:balance;margin:12px 0 0;font-family:'Space Grotesk','Inter Tight',sans-serif;font-weight:700;letter-spacing:-.03em;font-size:clamp(24px,2.8vw,40px);line-height:1;letter-spacing:.02em">{{ p.t }}</h3></div>
+        <p style="text-wrap:pretty;margin:0;font-size:16px;line-height:1.85;color:#a8a8ad;min-width:240px">{{ p.d }}</p>
+      </div>
+    </sc-for>
+  </div>
+
+  <div data-pad="1" style="padding:120px clamp(24px,8vw,140px) 160px;max-width:1400px;margin:0 auto">
+    <div style="font-size:12px;letter-spacing:.3em;color:#FF6A00;font-weight:700">MODOS DE CONDUÇÃO</div>
+    <h3 style="text-wrap:balance;margin:14px 0 36px;font-family:'Space Grotesk','Inter Tight',sans-serif;font-weight:700;letter-spacing:-.03em;font-size:clamp(30px,4.2vw,62px);line-height:1.045">ESCOLHA O SEU MODO.</h3>
+    <div role="tablist" style="display:flex;gap:0;border:1px solid #2a2a2e;width:fit-content;max-width:100%">
+      <sc-for list="{{ modeBtns }}" as="m" hint-placeholder-count="3"><button role="tab" aria-selected="{{ m.sel }}" onClick="{{ m.click }}" style="cursor:pointer;border:0;padding:18px 34px;font-family:'Space Grotesk','Inter Tight',sans-serif;font-weight:700;letter-spacing:.1em;font-size:clamp(16px,2vw,24px);;transition:.3s;background:{{ m.bg }};color:{{ m.fg }}">{{ m.t }}</button></sc-for>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:48px;margin-top:48px;align-items:center">
+      <div style="position:relative;aspect-ratio:16/10;overflow:hidden;background:#101013">
+        <img src="{{ mode.img }}" alt="Modo {{ mode.t }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:{{ mode.pos }};transition:object-position .8s;filter:brightness({{ mode.br }})">
+        <div style="position:absolute;left:20px;bottom:16px;font-family:'Space Grotesk','Inter Tight',sans-serif;font-weight:700;letter-spacing:-.03em;font-size:clamp(32px,4.4vw,56px);color:#FF6A00;line-height:1">{{ mode.t }}</div>
+      </div>
+      <div>
+        <p style="text-wrap:pretty;margin:0 0 32px;font-size:17px;line-height:1.75;color:#d0d0d4">{{ mode.d }}</p>
+        <sc-for list="{{ mode.bars }}" as="b" hint-placeholder-count="3"><div style="margin-bottom:22px"><div style="display:flex;justify-content:space-between;font-size:11px;letter-spacing:.2em;color:#8E8E93;margin-bottom:8px"><span>{{ b.l }}</span><span style="color:#F5F5F5">{{ b.p }}%</span></div><div style="height:3px;background:#2a2a2e"><div style="height:100%;background:linear-gradient(90deg,#FF6A00,#FF8A00);width:{{ b.p }}%;transition:width .8s cubic-bezier(.2,.7,.2,1)"></div></div></div></sc-for>
+        <div style="font-size:11px;color:#8E8E93;letter-spacing:.08em">Indicadores ilustrativos. Não representam medições reais.</div>
+      </div>
+    </div>
+  </div>
+<div style="position:relative;width:100%;aspect-ratio:16/9;min-height:320px;overflow:hidden;background:#050505">
+    <video id="sqv" src="uploads/202610181244%20(1)%20(1).mp4" loop playsinline preload="auto" data-silent="1" aria-label="Véloce One em movimento" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></video>
+    <div style="position:absolute;inset:0;background:linear-gradient(#050505,transparent 14%,transparent 86%,#101013)"></div>
+  </div>
+</section>
+
+<section id="technology" data-np="1" style="background:#101013;padding:150px clamp(24px,8vw,140px);position:relative" data-pad="1">
+  <div style="max-width:1400px;margin:0 auto">
+    <div style="font-size:12px;letter-spacing:.4em;color:#FF6A00;font-weight:700">03 / TECNOLOGIA</div>
+    <h2 data-r="1" style="text-wrap:balance;margin:28px 0 80px;font-family:'Space Grotesk','Inter Tight',sans-serif;font-weight:700;letter-spacing:-.03em;font-size:clamp(36px,5.6vw,84px);line-height:1.04">A INTELIGÊNCIA <span style="color:#FF6A00">DA VELOCIDADE.</span></h2>
+    <sc-for list="{{ techItems }}" as="t" hint-placeholder-count="9">
+      <div style="border-top:1px solid #2f2f34">
+        <button onClick="{{ t.click }}" aria-expanded="{{ t.open }}" style="width:100%;display:flex;align-items:center;gap:20px;justify-content:space-between;text-align:left;background:none;border:0;color:{{ t.fg }};cursor:pointer;padding:30px 0;transition:color .3s" >
+          <span style="display:flex;align-items:baseline;gap:24px"><span style="font-size:12px;letter-spacing:.2em;color:#FF6A00;font-weight:700">{{ t.n }}</span><span style="font-family:'Space Grotesk','Inter Tight',sans-serif;font-weight:700;letter-spacing:-.03em;font-size:clamp(20px,2.6vw,36px);line-height:1;text-transform:uppercase">{{ t.t }}</span></span>
+          <span style="font-size:34px;color:#FF6A00;transition:transform .4s;transform:{{ t.rot }}">+</span>
+        </button>
+        <div style="display:grid;transition:grid-template-rows .5s cubic-bezier(.2,.7,.2,1);grid-template-rows:{{ t.rows }}"><div style="overflow:hidden"><p style="text-wrap:pretty;margin:0 0 36px;max-width:760px;font-size:16px;line-height:1.85;color:#a8a8ad;padding-left:clamp(0px,5vw,60px)">{{ t.d }}</p></div></div>
+      </div>
+    </sc-for>
+    <div style="border-top:1px solid #2f2f34"></div>
+  </div>
+</section>
+
+<section id="design" data-np="1" style="background:#050505;position:relative">
+  <div style="position:relative;height:100vh;min-height:600px;overflow:hidden">
+    <img src="assets/side.png" alt="Perfil lateral" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 60%">
+    <div style="position:absolute;inset:0;background:linear-gradient(#050505,transparent 30%,transparent 55%,#050505)"></div>
+    <div data-pad="1" style="position:absolute;left:48px;right:48px;bottom:48px"><div style="font-size:12px;letter-spacing:.4em;color:#FF6A00;font-weight:700">04 / DESIGN</div><h2 data-r="1" style="text-wrap:balance;margin:20px 0 0;font-family:'Space Grotesk','Inter Tight',sans-serif;font-weight:700;letter-spacing:-.03em;font-size:clamp(38px,6.4vw,100px);line-height:1.04">ESCULPIDO PELO AR.</h2></div>
+  </div>
+  <div data-pad="1" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:0 80px;align-items:center;padding:100px clamp(24px,8vw,140px);max-width:1500px;margin:0 auto">
+    <div data-r="1"><h3 style="text-wrap:balance;margin:0;font-family:'Space Grotesk','Inter Tight',sans-serif;font-weight:700;letter-spacing:-.03em;font-size:clamp(26px,3.2vw,46px);line-height:1">DESIGN EXTERNO</h3><p style="text-wrap:pretty;font-size:16px;line-height:1.85;color:#a8a8ad;max-width:520px;margin:24px 0 0">Proporções baixas e largas, linha de teto rebaixada e postura agressiva. As superfícies esculpidas conduzem o olhar da proa à traseira e criam sombras que reforçam o volume sobre as rodas.</p></div>
+    <img src="assets/rear34.png" alt="Traseira em três quartos" style="width:100%;display:block;-webkit-mask-image:radial-gradient(ellipse at center,#000 55%,transparent 80%);mask-image:radial-gradient(ellipse at center,#000 55%,transparent 80%)">
+  </div>
+  <div data-pad="1" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:0 80px;align-items:center;padding:40px clamp(24px,8vw,140px) 100px;max-width:1500px;margin:0 auto">
+    <img src="assets/rear.png" alt="Traseira, difusor e assinatura luminosa" style="width:100%;display:block;-webkit-mask-image:radial-gradient(ellipse at center,#000 55%,transparent 80%);mask-image:radial-gradient(ellipse at center,#000 55%,transparent 80%)">
+    <div data-r="1"><h3 style="text-wrap:balance;margin:0;font-family:'Space Grotesk','Inter Tight',sans-serif;font-weight:700;letter-spacing:-.03em;font-size:clamp(26px,3.2vw,46px);line-height:1;color:#FF6A00">ASSINATURA LUMINOSA</h3><p style="text-wrap:pretty;font-size:16px;line-height:1.85;color:#a8a8ad;max-width:520px;margin:24px 0 0">Faróis LED finos e afilados na dianteira. Na traseira, uma lanterna contínua que atravessa a carroceria e desenha a largura do carro no escuro.</p></div>
+  </div>
+  <div data-pad="1" style="padding:60px clamp(24px,8vw,140px) 150px;max-width:1400px;margin:0 auto">
+    <sc-for list="{{ designItems }}" as="d" hint-placeholder-count="3">
+      <div data-r="1" style="display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.4fr);gap:24px 60px;padding:44px 0;border-top:1px solid #2a2a2e"><h3 style="text-wrap:balance;margin:0;font-family:'Space Grotesk','Inter Tight',sans-serif;font-weight:700;letter-spacing:-.03em;font-size:clamp(24px,2.8vw,40px);line-height:1">{{ d.t }}</h3><p style="text-wrap:pretty;margin:0;font-size:16px;line-height:1.85;color:#a8a8ad;min-width:240px">{{ d.d }}</p></div>
+    </sc-for>
+  </div>
+</section>
+
+<section id="specs" style="background:#101013;padding:150px clamp(24px,8vw,140px)" data-pad="1">
+  <div style="max-width:1300px;margin:0 auto">
+    <div data-np="1" style="font-size:12px;letter-spacing:.4em;color:#FF6A00;font-weight:700">05 / ESPECIFICAÇÕES</div>
+    <h2 data-r="1" style="text-wrap:balance;margin:28px 0 72px;font-family:'Space Grotesk','Inter Tight',sans-serif;font-weight:700;letter-spacing:-.03em;font-size:clamp(36px,5.6vw,84px);line-height:1.04">CADA DETALHE IMPORTA.</h2>
+    <p style="text-wrap:pretty;margin:0 0 56px;font-size:13px;letter-spacing:.06em;color:#8E8E93">VÉLOCE ONE · Ficha técnica conceitual. Todos os dados são fictícios e representam estimativas de projeto.</p>
+    <div style="display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:48px" data-sg="1">
+      <div role="tablist" data-np="1" style="display:flex;flex-direction:column;gap:4px;min-width:0">
+        <sc-for list="{{ specTabs }}" as="s" hint-placeholder-count="9"><button role="tab" aria-selected="{{ s.sel }}" onClick="{{ s.click }}" style="text-align:left;cursor:pointer;background:none;border:0;border-left:2px solid {{ s.bc }};padding:14px 18px;font-size:13px;letter-spacing:.2em;font-weight:700;color:{{ s.fg }};transition:.3s;text-transform:uppercase">{{ s.t }}</button></sc-for>
+      </div>
+      <div style="min-width:0">
+        <h3 style="text-wrap:balance;margin:0 0 20px;font-family:'Space Grotesk','Inter Tight',sans-serif;font-weight:700;letter-spacing:-.03em;font-size:clamp(26px,3.2vw,46px);color:#FF6A00;text-transform:uppercase">{{ spec.t }}</h3>
+        <sc-for list="{{ spec.rows }}" as="r" hint-placeholder-count="4"><div style="display:flex;flex-wrap:wrap;gap:6px 24px;justify-content:space-between;align-items:baseline;padding:22px 0;border-top:1px solid #2f2f34"><span style="font-size:13px;letter-spacing:.14em;color:#8E8E93;text-transform:uppercase">{{ r.k }}</span><span style="font-family:'Space Grotesk','Inter Tight',sans-serif;font-weight:700;letter-spacing:-.03em;font-size:clamp(20px,2.4vw,34px);letter-spacing:.02em">{{ r.v }}</span></div></sc-for>
+        <div style="border-top:1px solid #2f2f34"></div>
+        <p style="text-wrap:pretty;font-size:12px;color:#8E8E93;margin:20px 0 0;line-height:1.7">{{ spec.note }}</p>
+      </div>
+    </div>
+    <button data-np="1" onClick="{{ doPrint }}" style="margin-top:56px;cursor:pointer;display:inline-flex;gap:14px;border:1px solid #FF6A00;background:transparent;color:#FF8A00;padding:18px 34px;font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:.2em;transition:.3s" style-hover="background:#FF6A00;color:#050505">IMPRIMIR ESPECIFICAÇÕES <span>→</span></button>
+  </div>
+</section>
+
+<section id="gallery" data-np="1" style="background:#050505;padding:150px clamp(24px,8vw,140px)" data-pad="1">
+  <div style="max-width:1500px;margin:0 auto">
+    <div style="font-size:12px;letter-spacing:.4em;color:#FF6A00;font-weight:700">06 / GALERIA</div>
+    <h2 data-r="1" style="text-wrap:balance;margin:28px 0 72px;font-family:'Space Grotesk','Inter Tight',sans-serif;font-weight:700;letter-spacing:-.03em;font-size:clamp(36px,5.6vw,84px);line-height:1.04">A ARTE <span style="color:#FF6A00">DO MOVIMENTO.</span></h2>
+    <div style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px">
+      <sc-for list="{{ gal }}" as="g" hint-placeholder-count="5">
+        <button onClick="{{ g.open }}" aria-label="Abrir {{ g.t }}" style="grid-column:{{ g.col }};aspect-ratio:{{ g.ar }};position:relative;overflow:hidden;padding:0;border:0;background:#101013;cursor:zoom-in" style-hover="--x:1">
+          <img src="{{ g.src }}" alt="{{ g.t }}" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:{{ g.pos }};display:block;transition:transform 1s cubic-bezier(.2,.7,.2,1),filter .6s;filter:brightness(.85)" onMouseOver="{{ imgIn }}" onMouseOut="{{ imgOut }}">
+          <span style="position:absolute;left:16px;bottom:14px;font-family:'Space Grotesk','Inter Tight',sans-serif;font-weight:700;letter-spacing:.1em;;font-size:18px;pointer-events:none;text-shadow:0 2px 12px #000">{{ g.t }}</span>
+        </button>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section id="brand" data-np="1" style="background:#101013;padding:170px clamp(24px,8vw,140px)" data-pad="1">
+  <div style="max-width:1400px;margin:0 auto">
+    <div style="font-size:12px;letter-spacing:.4em;color:#FF6A00;font-weight:700">07 / SOBRE A VÉLOCE</div>
+    <h2 data-r="1" style="text-wrap:balance;margin:28px 0 90px;font-family:'Space Grotesk','Inter Tight',sans-serif;font-weight:700;letter-spacing:-.03em;font-size:clamp(34px,5.2vw,78px);line-height:1.04">NÓS NÃO SEGUIMOS O FUTURO.<br><span style="color:#FF6A00">NÓS O PROJETAMOS.</span></h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:56px 64px">
+      <sc-for list="{{ brand }}" as="b" hint-placeholder-count="5"><div data-r="1" style="border-top:1px solid #FF6A00;padding-top:22px"><h3 style="text-wrap:balance;margin:0 0 14px;font-size:13px;letter-spacing:.24em;color:#F5F5F5">{{ b.t }}</h3><p style="text-wrap:pretty;margin:0;font-size:15px;line-height:1.8;color:#a8a8ad">{{ b.d }}</p></div></sc-for>
+    </div>
+    <p style="text-wrap:pretty;margin:90px 0 0;font-size:12px;color:#8E8E93;max-width:640px;line-height:1.7">VÉLOCE é uma marca fictícia. Esta narrativa é um exercício conceitual e não descreve uma empresa, pessoas ou instalações reais.</p>
+  </div>
+</section>
+
+<section id="final" data-np="1" style="position:relative;height:100vh;min-height:620px;overflow:hidden;background:#050505">
+  <img src="assets/rear.png" alt="Véloce One, traseira" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 55%">
+  <div style="position:absolute;inset:0;background:linear-gradient(#101013 0,transparent 25%,transparent 45%,rgba(5,5,5,.9) 85%,#050505)"></div>
+  <div data-pad="1" style="position:absolute;left:48px;right:48px;bottom:60px;text-align:center">
+    <h2 data-r="1" style="text-wrap:balance;margin:0;font-family:'Space Grotesk','Inter Tight',sans-serif;font-weight:700;letter-spacing:-.03em;font-size:clamp(40px,7.4vw,120px);line-height:1.04">ALÉM DA <span style="color:#FF6A00">VELOCIDADE.</span></h2>
+    <p style="text-wrap:pretty;margin:18px 0 32px;font-size:clamp(15px,1.6vw,20px);color:#d0d0d4">O próximo capítulo da performance começa aqui.</p>
+    <a href="#home" style="display:inline-flex;gap:14px;padding:18px 34px;background:#FF6A00;color:#050505;font-weight:700;font-size:13px;letter-spacing:.2em" style-hover="background:#FF8A00;color:#050505">VOLTAR AO TOPO <span>↑</span></a>
+  </div>
+</section>
+
+<footer data-np="1" data-pad="1" style="background:#050505;padding:80px clamp(24px,8vw,140px) 40px;border-top:1px solid #1d1d21">
+  <div style="max-width:1400px;margin:0 auto;display:flex;flex-wrap:wrap;gap:40px;justify-content:space-between">
+    <div><div style="font-family:'Space Grotesk','Inter Tight',sans-serif;font-weight:700;letter-spacing:.1em;font-size:40px;">VÉLOCE</div><div style="margin-top:8px;font-size:12px;letter-spacing:.38em;color:#FF8A00;font-weight:700">ALÉM DA VELOCIDADE.</div></div>
+    <nav style="display:flex;flex-wrap:wrap;gap:14px 30px;align-content:flex-start">
+      <sc-for list="{{ links }}" as="l" hint-placeholder-count="9"><a href="#{{ l.id }}" style="font-size:12px;letter-spacing:.22em;font-weight:600;color:#8E8E93" style-hover="color:#FF6A00">{{ l.t }}</a></sc-for>
+    </nav>
+  </div>
+  <div style="max-width:1400px;margin:60px auto 0;font-size:12px;color:#8E8E93;line-height:1.8">© 2026 VÉLOCE AUTOMOTIVE.<br>Marca e veículo fictícios. Projeto conceitual desenvolvido para fins educacionais.</div>
+</footer>
+
+<div data-np="1" onClick="{{ closeLb }}" style="position:fixed;inset:0;z-index:200;background:rgba(5,5,5,.96);display:flex;align-items:center;justify-content:center;transition:opacity .4s;opacity:{{ lbOpacity }};pointer-events:{{ lbPE }}">
+  <img src="{{ lbSrc }}" alt="{{ lbTitle }}" onClick="{{ stop }}" style="max-width:92vw;max-height:84vh;object-fit:contain;transition:transform .5s cubic-bezier(.2,.7,.2,1);transform:{{ lbScale }}">
+  <div style="position:absolute;left:0;right:0;bottom:26px;text-align:center;font-family:'Space Grotesk','Inter Tight',sans-serif;font-weight:700;letter-spacing:.1em;;font-size:18px">{{ lbTitle }} <span style="color:#8E8E93;font-family:'Manrope',sans-serif;font-size:12px;margin-left:12px">{{ lbCount }}</span></div>
+  <button onClick="{{ lbPrev }}" aria-label="Anterior" style="position:absolute;left:18px;top:50%;transform:translateY(-50%);width:54px;height:54px;border-radius:50%;border:1px solid #FF6A00;background:rgba(5,5,5,.6);color:#FF8A00;font-size:22px;cursor:pointer">←</button>
+  <button onClick="{{ lbNext }}" aria-label="Próxima" style="position:absolute;right:18px;top:50%;transform:translateY(-50%);width:54px;height:54px;border-radius:50%;border:1px solid #FF6A00;background:rgba(5,5,5,.6);color:#FF8A00;font-size:22px;cursor:pointer">→</button>
+  <button onClick="{{ closeLb }}" aria-label="Fechar" style="position:absolute;right:18px;top:18px;width:54px;height:54px;border:0;background:none;color:#F5F5F5;font-size:34px;cursor:pointer">×</button>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { progress: 0, scrolled: false, menu: false, mode: 1, acc: 0, spec: 0, lb: -1 };
+  links = [{id:'home',t:'INÍCIO'},{id:'one',t:'O VEÍCULO'},{id:'performance',t:'PERFORMANCE'},{id:'technology',t:'TECNOLOGIA'},{id:'design',t:'DESIGN'},{id:'specs',t:'ESPECIFICAÇÕES'},{id:'gallery',t:'GALERIA'},{id:'brand',t:'SOBRE A VÉLOCE'},{id:'final',t:'PRÓXIMA ERA'}];
+  heroSpecs = [{v:'1.020',u:'hp',l:'Potência máxima'},{v:'2,1',u:'s',l:'0–100 km/h'},{v:'410',u:'km/h',l:'Velocidade máxima projetada'}];
+  stats = [{n:1020,d:0,u:'hp',l:'Potência'},{n:1350,d:0,u:'Nm',l:'Torque projetado'},{n:2.1,d:1,u:'s',l:'0 a 100 km/h'},{n:410,d:0,u:'km/h',l:'Velocidade máxima projetada'}];
+  perf = [
+    {n:'01',t:'TORQUE INSTANTÂNEO',d:'Motores elétricos entregam torque desde a rotação zero. O resultado conceitual é uma resposta quase imediata ao pedal, sem as pausas de troca de marchas ou de subida de giro.'},
+    {n:'02',t:'VETORIZAÇÃO DE TORQUE',d:'Um sistema de distribuição individual de torque ajusta, a cada instante, quanto cada roda recebe. Em curvas, isso poderia melhorar a rotação do carro, a tração na saída e a estabilidade.'},
+    {n:'03',t:'DINÂMICA DO CHASSI',d:'Centro de gravidade baixo, rigidez estrutural elevada e massa bem distribuída formam a base da dinâmica. A suspensão adaptativa ajusta amortecimento e altura conforme o modo e a situação.'},
+    {n:'04',t:'SISTEMA DE FREIOS',d:'Freios carbono-cerâmicos oferecem resistência ao calor e baixo peso não suspenso. Combinados à regeneração, devolvem parte da energia da desaceleração à bateria.'}
+  ];
+  modes = [
+    {t:'URBANO',img:'assets/front.png',pos:'50% 60%',br:.7,d:'Entrega suave e progressiva, suspensão confortável e regeneração mais intensa para o uso diário.',bars:[['ACELERAÇÃO',35],['ESTABILIDADE',70],['AGILIDADE',45]]},
+    {t:'ESPORTIVO',img:'assets/front34.png',pos:'50% 62%',br:.9,d:'Pedal mais direto, suspensão firmada e distribuição de torque mais ativa para conduzir com intensidade.',bars:[['ACELERAÇÃO',70],['ESTABILIDADE',80],['AGILIDADE',75]]},
+    {t:'PISTA',img:'assets/rear34.png',pos:'50% 62%',br:1.05,d:'Resposta máxima, suspensão no ponto mais rígido e vetorização de torque no limite para uso em pista.',bars:[['ACELERAÇÃO',95],['ESTABILIDADE',90],['AGILIDADE',95]]}
+  ];
+  tech = [
+    ['ARQUITETURA VÉLOCE E-QUAD','Arquitetura elétrica conceitual com quatro motores, um por roda, e tração integral independente. O controle individual de cada eixo de potência permite ajustar torque em milissegundos.'],
+    ['SISTEMA DE ALTA TENSÃO','Sistema de classe 800 V. Tensões mais altas permitem reduzir correntes para a mesma potência, o que favorece cabos mais leves, menos perdas e recargas mais rápidas.'],
+    ['TECNOLOGIA DE BATERIA','Bateria conceitual de 120 kWh. A capacidade define a autonomia, a capacidade de entregar potência define o desempenho e o gerenciamento térmico preserva ambos em uso intenso.'],
+    ['RECUPERAÇÃO DE ENERGIA','A frenagem regenerativa transforma os motores em geradores durante a desaceleração, devolvendo energia à bateria e reduzindo o desgaste dos freios mecânicos.'],
+    ['GESTÃO TÉRMICA','Motores, inversores e baterias rendem melhor em faixas estreitas de temperatura. Circuitos de arrefecimento dedicados mantêm desempenho consistente e protegem os componentes.'],
+    ['ESTRUTURA DE CARBONO','Monocoque conceitual em fibra de carbono. A célula central rígida e leve serve de base para suspensão, bateria e proteção dos ocupantes.']
+  ];
+  design = [
+    {t:'AERODINÂMICA',d:'O splitter dianteiro, as entradas de ar, o assoalho e o difusor traseiro trabalham em conjunto para conduzir o fluxo, refrigerar componentes e estabilizar o carro em alta velocidade.'},
+    {t:'MATERIAIS',d:'Fibra de carbono aparente em áreas aerodinâmicas, alumínio em componentes estruturais e acabamentos de alta performance no interior.'},
+    {t:'FILOSOFIA DE DESIGN',d:'Cada superfície nasce de uma função: reduzir arrasto, direcionar ar ou resfriar. A forma expressa velocidade e eficiência ao mesmo tempo.'}
+  ];
+  specs = [
+    {t:'Performance',rows:[['Potência','1.020 hp'],['Torque','1.350 Nm'],['0–100 km/h','2,1 s'],['Velocidade máxima projetada','410 km/h']]},
+    {t:'Motorização elétrica',rows:[['Motores','Quatro motores elétricos'],['Tração','Integral elétrica'],['Torque','Distribuição individual'],['Arquitetura','VÉLOCE E-QUAD']]},
+    {t:'Bateria',rows:[['Capacidade','120 kWh'],['Arquitetura','Classe 800 V'],['Recarga DC máx. projetada','350 kW'],['Autonomia estimada','650 km']]},
+    {t:'Chassi',rows:[['Estrutura','Monocoque conceitual de fibra de carbono'],['Suspensão','Independente adaptativa'],['Frenagem','Regenerativa'],['Freios','Carbono-cerâmicos']]},
+    {t:'Dimensões',rows:[['Comprimento','≈ 4.700 mm'],['Largura','≈ 2.020 mm'],['Altura','≈ 1.130 mm'],['Entre-eixos','≈ 2.750 mm'],['Massa','≈ 1.850 kg']],note:'Dimensões e massa são estimativas de projeto.'},
+    {t:'Aerodinâmica',rows:[['Dianteira','Lâmina dianteira (splitter) e entradas de ar'],['Assoalho','Fundo plano aerodinâmico'],['Traseira','Difusor e lanterna contínua'],['Refrigeração','Dutos laterais integrados']],note:'Valores de downforce e coeficiente aerodinâmico não foram definidos.'}
+  ];
+  gal = [
+    {src:'assets/front34.png',t:'FRENTE 3/4',col:'span 4',ar:'16/10',pos:'50% 60%'},
+    {src:'assets/rear.png',t:'TRASEIRA',col:'span 2',ar:'4/5',pos:'50% 55%'},
+    {src:'assets/side.png',t:'PERFIL',col:'span 3',ar:'16/10',pos:'50% 56%'},
+    {src:'assets/rear34.png',t:'TRASEIRA 3/4',col:'span 3',ar:'16/10',pos:'50% 60%'},
+    {src:'assets/front.png',t:'FRENTE',col:'span 6',ar:'21/9',pos:'50% 55%'}
+  ];
+  brand = [
+    {t:'A VISÃO DE PERFORMANCE ELÉTRICA',d:'Acreditamos que potência elétrica pode ser tão emocionante quanto qualquer motor de combustão, com resposta imediata e controle total.'},
+    {t:'A BUSCA POR INOVAÇÃO',d:'Cada sistema do VÉLOCE ONE é concebido como uma pergunta: o que muda quando partimos do zero?'},
+    {t:'O PAPEL DO DESIGN',d:'Design é função visível. As formas do carro nascem do ar, da refrigeração e da estrutura, e se tornam sua identidade.'},
+    {t:'COMPROMISSO COM A ENGENHARIA',d:'Conceitos só convencem quando a engenharia por trás é coerente. O projeto assume esse rigor como ponto de partida.'},
+    {t:'UMA CONDUÇÃO EXTRAORDINÁRIA',d:'O objetivo final é a experiência ao volante: precisa, intensa e memorável.'}
+  ];
+  componentDidMount() {
+    this.muteIv = setInterval(() => { document.querySelectorAll("video").forEach(v => { if (!v.hasAttribute("muted")) { v.defaultMuted = true; v.setAttribute("muted", ""); } v.muted = true; v.volume = 0; v.loop = true; if (v.dataset.silent && (v.paused || v.ended)) { if (v.ended) v.currentTime = 0; v.play().catch(() => {}); } }); }, 100);
+    const hv = document.getElementById("herov"); if (hv) { hv.loop = true; hv.muted = true; hv.volume = 0; hv.addEventListener("volumechange", () => { if (!hv.muted) hv.muted = true; }); hv.addEventListener("ended", () => { hv.currentTime = 0; hv.play(); }); hv.addEventListener("pause", () => { if (!hv.ended) hv.play().catch(() => {}); }); hv.play().catch(() => {}); }
+    const rm = matchMedia('(prefers-reduced-motion:reduce)').matches;
+    this.onScroll = () => {
+      const h = document.documentElement, max = h.scrollHeight - innerHeight;
+      const p = max > 0 ? scrollY / max : 0, s = scrollY > 60;
+      if (Math.abs(p - this.state.progress) > .002 || s !== this.state.scrolled) this.setState({ progress: p, scrolled: s });
+      if (!rm) document.querySelectorAll('[data-px]').forEach(el => { const r = el.parentElement.getBoundingClientRect(); if (r.bottom < 0 || r.top > innerHeight) return; el.style.translate = '0 ' + (-(r.top) * parseFloat(el.dataset.px)).toFixed(1) + 'px'; });
+    };
+    addEventListener('scroll', this.onScroll, { passive: true });
+    this.onKey = e => { if (this.state.lb < 0) { if (e.key === 'Escape') this.setState({ menu: false }); return; } if (e.key === 'Escape') this.setState({ lb: -1 }); if (e.key === 'ArrowRight') this.nav(1); if (e.key === 'ArrowLeft') this.nav(-1); };
+    addEventListener('keydown', this.onKey);
+    const run = el => { const n = parseFloat(el.dataset.count), d = parseInt(el.dataset.dec), t0 = performance.now(); const f = t => { const k = rm ? 1 : Math.min((t - t0) / 1800, 1), e = 1 - Math.pow(1 - k, 3), v = n * e; el.textContent = d ? v.toFixed(d).replace('.', ',') : Math.round(v).toLocaleString('pt-BR'); if (k < 1) requestAnimationFrame(f); }; requestAnimationFrame(f); };
+    this.io = new IntersectionObserver(es => es.forEach(e => { if (!e.isIntersecting) return; const el = e.target; this.io.unobserve(el); if (el.dataset.count != null) run(el); if (el.dataset.r != null) { el.style.opacity = 1; el.style.transform = 'none'; } }), { threshold: .15 });
+    const scan = () => document.querySelectorAll('[data-r],[data-count]').forEach(el => { if (el.__o) return; el.__o = 1; if (el.dataset.r != null && !rm) { el.style.opacity = 0; el.style.transform = 'translateY(50px)'; el.style.transition = 'opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)'; } this.io.observe(el); });
+    setTimeout(scan, 100); setTimeout(scan, 800);
+    this.onScroll();
+  }
+  componentWillUnmount() { removeEventListener('scroll', this.onScroll); removeEventListener('keydown', this.onKey); this.io && this.io.disconnect(); }
+  nav(d) { this.setState(s => ({ lb: (s.lb + d + this.gal.length) % this.gal.length })); }
+  renderVals() {
+    const s = this.state, m = this.modes[s.mode], sp = this.specs[s.spec], lbi = this.gal[Math.max(s.lb, 0)];
+    return {
+      progress: s.progress.toFixed(4), links: this.links, heroSpecs: this.heroSpecs, stats: this.stats, perf: this.perf,
+      navBg: s.scrolled || s.menu ? 'rgba(5,5,5,.82)' : 'transparent',
+      toggleMenu: () => this.setState(x => ({ menu: !x.menu })), closeMenu: () => this.setState({ menu: false }),
+      menuClip: s.menu ? 'inset(0 0 0 0)' : 'inset(0 0 100% 0)',
+      bar1: s.menu ? 'translateY(4px) rotate(45deg)' : 'none', bar2: s.menu ? 'translateY(-4px) rotate(-45deg)' : 'none',
+      modeBtns: this.modes.map((x, i) => ({ t: x.t, sel: i === s.mode, bg: i === s.mode ? '#FF6A00' : 'transparent', fg: i === s.mode ? '#050505' : '#F5F5F5', click: () => this.setState({ mode: i }) })),
+      mode: { t: m.t, img: m.img, pos: m.pos, br: m.br, d: m.d, bars: m.bars.map(b => ({ l: b[0], p: b[1] })) },
+      techItems: this.tech.map((t, i) => { const o = s.acc === i; return { n: String(i + 1).padStart(2, '0'), t: t[0], d: t[1], open: o, fg: o ? '#FF6A00' : '#F5F5F5', rot: o ? 'rotate(45deg)' : 'none', rows: o ? '1fr' : '0fr', click: () => this.setState({ acc: o ? -1 : i }) }; }),
+      designItems: this.design,
+      specTabs: this.specs.map((x, i) => ({ t: x.t, sel: i === s.spec, bc: i === s.spec ? '#FF6A00' : '#2f2f34', fg: i === s.spec ? '#FF8A00' : '#8E8E93', click: () => this.setState({ spec: i }) })),
+      spec: { t: sp.t, rows: sp.rows.map(r => ({ k: r[0], v: r[1] })), note: sp.note || 'Dados conceituais e fictícios.' },
+      doPrint: () => print(),
+      gal: this.gal.map((g, i) => ({ ...g, open: () => this.setState({ lb: i }) })),
+      imgIn: e => { const i = e.currentTarget; i.style.transform = 'scale(1.06)'; i.style.filter = 'brightness(1.1)'; },
+      imgOut: e => { const i = e.currentTarget; i.style.transform = 'none'; i.style.filter = 'brightness(.85)'; },
+      brand: this.brand,
+      lbOpacity: s.lb >= 0 ? 1 : 0, lbPE: s.lb >= 0 ? 'auto' : 'none', lbScale: s.lb >= 0 ? 'scale(1)' : 'scale(.92)',
+      lbSrc: lbi.src, lbTitle: lbi.t, lbCount: (Math.max(s.lb, 0) + 1) + ' / ' + this.gal.length,
+      closeLb: () => this.setState({ lb: -1 }), stop: e => e.stopPropagation(),
+      lbPrev: e => { e.stopPropagation(); this.nav(-1); }, lbNext: e => { e.stopPropagation(); this.nav(1); }
+    };
+  }
+}
+</script>
+</body>
+</html>
