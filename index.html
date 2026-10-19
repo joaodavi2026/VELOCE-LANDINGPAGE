@@ -20,6 +20,9 @@ a{color:#FF8A00;text-decoration:none}a:hover{color:#F5F5F5}
 @keyframes bar{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 @media(max-width:1180px){[data-dl]{display:none!important}[data-mb]{display:flex!important}}
 @media(max-width:860px){[data-pad]{padding-left:22px!important;padding-right:22px!important}}
+@media(max-width:700px){[data-g2],[data-sg]{grid-template-columns:minmax(0,1fr)!important}[data-sg]{gap:32px!important}}
+@media(max-width:860px){[data-bleed]{margin-left:-22px!important;margin-right:-22px!important}}
+@media(max-width:520px){[data-mt]{width:100%!important}[data-mt] button{flex:1 1 0;min-width:0;padding:16px 6px!important;font-size:14px!important;letter-spacing:.04em!important}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 @media print{[data-np]{display:none!important}body{background:#fff!important}#specs{background:#fff!important;padding:20px!important}#specs *{color:#000!important;background:none!important;border-color:#999!important}}
 </style>
@@ -28,15 +31,15 @@ a{color:#FF8A00;text-decoration:none}a:hover{color:#F5F5F5}
 <div style="position:fixed;top:0;left:0;height:2px;width:100%;z-index:100;transform-origin:0 50%;background:#FF6A00;transform:scaleX({{ progress }})" data-np="1"></div>
 
 <header data-np="1" style="position:fixed;top:0;left:0;right:0;z-index:90;display:flex;align-items:center;justify-content:space-between;padding:22px clamp(24px,8vw,140px);transition:background .4s,padding .4s;background:{{ navBg }}" data-pad="1">
-  <a href="#home" style="font-family:'Space Grotesk','Inter Tight',sans-serif;font-weight:700;letter-spacing:.1em;font-size:26px;;color:#F5F5F5">VÉLOCE</a>
+  <a href="#home" style="font-family:'Space Grotesk','Inter Tight',sans-serif;font-weight:700;letter-spacing:.1em;font-size:26px;color:#F5F5F5;display:inline-flex;align-items:center;min-height:44px">VÉLOCE</a>
   <nav data-dl="1" style="display:flex;gap:22px">
     <sc-for list="{{ links }}" as="l" hint-placeholder-count="9"><a href="#{{ l.id }}" style="font-size:11px;letter-spacing:.14em;font-weight:600;color:#F5F5F5;white-space:nowrap" style-hover="color:#FF6A00">{{ l.t }}</a></sc-for>
   </nav>
-  <button data-mb="1" onClick="{{ toggleMenu }}" aria-label="Menu" style="display:none;flex-direction:column;gap:6px;background:none;border:0;padding:10px;cursor:pointer;z-index:95"><span style="width:28px;height:2px;background:#F5F5F5;display:block;transition:.3s;transform:{{ bar1 }}"></span><span style="width:28px;height:2px;background:#F5F5F5;display:block;transition:.3s;transform:{{ bar2 }}"></span></button>
+  <button data-mb="1" onClick="{{ toggleMenu }}" aria-label="Menu" style="display:none;flex-direction:column;gap:6px;background:none;border:0;padding:10px;min-width:44px;min-height:44px;align-items:center;justify-content:center;cursor:pointer;z-index:95"><span style="width:28px;height:2px;background:#F5F5F5;display:block;transition:.3s;transform:{{ bar1 }}"></span><span style="width:28px;height:2px;background:#F5F5F5;display:block;transition:.3s;transform:{{ bar2 }}"></span></button>
 </header>
 
 <div data-np="1" style="position:fixed;inset:0;z-index:85;background:#050505;display:flex;flex-direction:column;justify-content:center;gap:6px;padding:0 32px;transition:clip-path .6s cubic-bezier(.7,0,.2,1);clip-path:{{ menuClip }}">
-  <sc-for list="{{ links }}" as="l" hint-placeholder-count="9"><a href="#{{ l.id }}" onClick="{{ closeMenu }}" style="font-family:'Space Grotesk','Inter Tight',sans-serif;font-weight:700;letter-spacing:-.03em;font-size:8.5vw;line-height:1.05;text-transform:uppercase;color:#F5F5F5">{{ l.t }}</a></sc-for>
+  <sc-for list="{{ links }}" as="l" hint-placeholder-count="9"><a href="#{{ l.id }}" onClick="{{ closeMenu }}" style="font-family:'Space Grotesk','Inter Tight',sans-serif;font-weight:700;letter-spacing:-.03em;font-size:8.5vw;line-height:1.05;text-transform:uppercase;color:#F5F5F5;display:block;padding:8px 0">{{ l.t }}</a></sc-for>
 </div>
 
 <section id="home" data-np="1" style="position:relative;height:100vh;min-height:520px;overflow:hidden;background:#050505">
@@ -60,7 +63,7 @@ a{color:#FF8A00;text-decoration:none}a:hover{color:#F5F5F5}
   <div data-r="1" style="font-size:12px;letter-spacing:.4em;color:#FF6A00;font-weight:700">01 / O VEÍCULO</div>
   <h2 data-r="1" style="text-wrap:balance;font-family:'Space Grotesk','Inter Tight',sans-serif;font-weight:700;letter-spacing:-.03em;margin:28px 0 0;font-size:clamp(34px,5.4vw,80px);line-height:1.04;max-width:14em;text-wrap:balance;color:#F5F5F5">MAIS QUE UM CARRO.<br><span style="color:#FF6A00">UMA NOVA REFERÊNCIA.</span></h2>
   <p data-r="1" style="text-wrap:pretty;margin:36px 0 0;max-width:560px;font-size:17px;line-height:1.75;color:#b4b4b9;text-wrap:pretty">O VÉLOCE ONE é um hipercarro elétrico conceitual desenvolvido para explorar os limites da tecnologia, da dinâmica veicular e da aerodinâmica.</p>
-  <div style="position:relative;margin:72px calc(-1*clamp(24px,8vw,140px)) 0">
+  <div data-bleed="1" style="position:relative;margin:72px calc(-1*clamp(24px,8vw,140px)) 0">
     <img src="assets/side.png" alt="Véloce One, vista lateral" style="display:block;width:100%;height:min(80vh,90vw);object-fit:cover;object-position:center 58%;-webkit-mask-image:linear-gradient(to bottom,transparent,#000 18%,#000 82%,transparent);mask-image:linear-gradient(to bottom,transparent,#000 18%,#000 82%,transparent)">
   </div>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:48px;padding-bottom:160px;margin-top:56px">
@@ -85,9 +88,9 @@ a{color:#FF8A00;text-decoration:none}a:hover{color:#F5F5F5}
 
   <div data-pad="1" style="padding:140px clamp(24px,8vw,140px) 0;max-width:1400px;margin:0 auto">
     <sc-for list="{{ perf }}" as="p" hint-placeholder-count="4">
-      <div data-r="1" style="display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.4fr);gap:24px 60px;padding:44px 0;border-top:1px solid #2a2a2e">
+      <div data-r="1" data-g2="1" style="display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.4fr);gap:24px 60px;padding:44px 0;border-top:1px solid #2a2a2e">
         <div><div style="font-size:12px;color:#FF6A00;letter-spacing:.3em;font-weight:700">{{ p.n }}</div><h3 style="text-wrap:balance;margin:12px 0 0;font-family:'Space Grotesk','Inter Tight',sans-serif;font-weight:700;letter-spacing:-.03em;font-size:clamp(24px,2.8vw,40px);line-height:1;letter-spacing:.02em">{{ p.t }}</h3></div>
-        <p style="text-wrap:pretty;margin:0;font-size:16px;line-height:1.85;color:#a8a8ad;min-width:240px">{{ p.d }}</p>
+        <p style="text-wrap:pretty;margin:0;font-size:16px;line-height:1.85;color:#a8a8ad">{{ p.d }}</p>
       </div>
     </sc-for>
   </div>
@@ -95,7 +98,7 @@ a{color:#FF8A00;text-decoration:none}a:hover{color:#F5F5F5}
   <div data-pad="1" style="padding:120px clamp(24px,8vw,140px) 160px;max-width:1400px;margin:0 auto">
     <div style="font-size:12px;letter-spacing:.3em;color:#FF6A00;font-weight:700">MODOS DE CONDUÇÃO</div>
     <h3 style="text-wrap:balance;margin:14px 0 36px;font-family:'Space Grotesk','Inter Tight',sans-serif;font-weight:700;letter-spacing:-.03em;font-size:clamp(30px,4.2vw,62px);line-height:1.045">ESCOLHA O SEU MODO.</h3>
-    <div role="tablist" style="display:flex;gap:0;border:1px solid #2a2a2e;width:fit-content;max-width:100%">
+    <div data-mt="1" role="tablist" style="display:flex;gap:0;border:1px solid #2a2a2e;width:fit-content;max-width:100%">
       <sc-for list="{{ modeBtns }}" as="m" hint-placeholder-count="3"><button role="tab" aria-selected="{{ m.sel }}" onClick="{{ m.click }}" style="cursor:pointer;border:0;padding:18px 34px;font-family:'Space Grotesk','Inter Tight',sans-serif;font-weight:700;letter-spacing:.1em;font-size:clamp(16px,2vw,24px);;transition:.3s;background:{{ m.bg }};color:{{ m.fg }}">{{ m.t }}</button></sc-for>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:48px;margin-top:48px;align-items:center">
@@ -149,7 +152,7 @@ a{color:#FF8A00;text-decoration:none}a:hover{color:#F5F5F5}
   </div>
   <div data-pad="1" style="padding:60px clamp(24px,8vw,140px) 150px;max-width:1400px;margin:0 auto">
     <sc-for list="{{ designItems }}" as="d" hint-placeholder-count="3">
-      <div data-r="1" style="display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.4fr);gap:24px 60px;padding:44px 0;border-top:1px solid #2a2a2e"><h3 style="text-wrap:balance;margin:0;font-family:'Space Grotesk','Inter Tight',sans-serif;font-weight:700;letter-spacing:-.03em;font-size:clamp(24px,2.8vw,40px);line-height:1">{{ d.t }}</h3><p style="text-wrap:pretty;margin:0;font-size:16px;line-height:1.85;color:#a8a8ad;min-width:240px">{{ d.d }}</p></div>
+      <div data-r="1" data-g2="1" style="display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.4fr);gap:24px 60px;padding:44px 0;border-top:1px solid #2a2a2e"><h3 style="text-wrap:balance;margin:0;font-family:'Space Grotesk','Inter Tight',sans-serif;font-weight:700;letter-spacing:-.03em;font-size:clamp(24px,2.8vw,40px);line-height:1">{{ d.t }}</h3><p style="text-wrap:pretty;margin:0;font-size:16px;line-height:1.85;color:#a8a8ad">{{ d.d }}</p></div>
     </sc-for>
   </div>
 </section>
@@ -161,7 +164,7 @@ a{color:#FF8A00;text-decoration:none}a:hover{color:#F5F5F5}
     <p style="text-wrap:pretty;margin:0 0 56px;font-size:13px;letter-spacing:.06em;color:#8E8E93">VÉLOCE ONE · Ficha técnica conceitual. Todos os dados são fictícios e representam estimativas de projeto.</p>
     <div style="display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:48px" data-sg="1">
       <div role="tablist" data-np="1" style="display:flex;flex-direction:column;gap:4px;min-width:0">
-        <sc-for list="{{ specTabs }}" as="s" hint-placeholder-count="9"><button role="tab" aria-selected="{{ s.sel }}" onClick="{{ s.click }}" style="text-align:left;cursor:pointer;background:none;border:0;border-left:2px solid {{ s.bc }};padding:14px 18px;font-size:13px;letter-spacing:.2em;font-weight:700;color:{{ s.fg }};transition:.3s;text-transform:uppercase">{{ s.t }}</button></sc-for>
+        <sc-for list="{{ specTabs }}" as="s" hint-placeholder-count="9"><button role="tab" aria-selected="{{ s.sel }}" onClick="{{ s.click }}" style="text-align:left;cursor:pointer;background:none;border:0;border-left:2px solid {{ s.bc }};padding:16px 18px;font-size:13px;letter-spacing:.2em;font-weight:700;color:{{ s.fg }};transition:.3s;text-transform:uppercase">{{ s.t }}</button></sc-for>
       </div>
       <div style="min-width:0">
         <h3 style="text-wrap:balance;margin:0 0 20px;font-family:'Space Grotesk','Inter Tight',sans-serif;font-weight:700;letter-spacing:-.03em;font-size:clamp(26px,3.2vw,46px);color:#FF6A00;text-transform:uppercase">{{ spec.t }}</h3>
@@ -200,6 +203,23 @@ a{color:#FF8A00;text-decoration:none}a:hover{color:#F5F5F5}
   </div>
 </section>
 
+<section id="faq" data-np="1" style="background:#050505;padding:150px clamp(24px,8vw,140px);position:relative" data-pad="1">
+  <div style="max-width:1400px;margin:0 auto">
+    <div style="font-size:12px;letter-spacing:.4em;color:#FF6A00;font-weight:700">08 / PERGUNTAS FREQUENTES</div>
+    <h2 data-r="1" style="text-wrap:balance;margin:28px 0 80px;font-family:'Space Grotesk','Inter Tight',sans-serif;font-weight:700;letter-spacing:-.03em;font-size:clamp(32px,5vw,72px);line-height:1.04">O QUE VOCÊ <span style="color:#FF6A00">QUER SABER.</span></h2>
+    <sc-for list="{{ faqItems }}" as="f" hint-placeholder-count="5">
+      <div style="border-top:1px solid #2f2f34">
+        <button onClick="{{ f.click }}" aria-expanded="{{ f.open }}" style="width:100%;display:flex;align-items:center;gap:20px;justify-content:space-between;text-align:left;background:none;border:0;color:{{ f.fg }};cursor:pointer;padding:26px 0;transition:color .3s">
+          <span style="font-family:'Space Grotesk','Inter Tight',sans-serif;font-weight:700;letter-spacing:-.02em;font-size:clamp(17px,2.2vw,28px);line-height:1.2;min-width:0;overflow-wrap:anywhere">{{ f.q }}</span>
+          <span style="flex:none;font-size:34px;color:#FF6A00;transition:transform .4s;transform:{{ f.rot }}">+</span>
+        </button>
+        <div style="display:grid;transition:grid-template-rows .5s cubic-bezier(.2,.7,.2,1);grid-template-rows:{{ f.rows }}"><div style="overflow:hidden"><p style="text-wrap:pretty;margin:0 0 32px;max-width:760px;font-size:16px;line-height:1.85;color:#a8a8ad">{{ f.a }}</p></div></div>
+      </div>
+    </sc-for>
+    <div style="border-top:1px solid #2f2f34"></div>
+  </div>
+</section>
+
 <section id="final" data-np="1" style="position:relative;height:100vh;min-height:620px;overflow:hidden;background:#050505">
   <img src="assets/rear.png" alt="Véloce One, traseira" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 55%">
   <div style="position:absolute;inset:0;background:linear-gradient(#101013 0,transparent 25%,transparent 45%,rgba(5,5,5,.9) 85%,#050505)"></div>
@@ -213,8 +233,8 @@ a{color:#FF8A00;text-decoration:none}a:hover{color:#F5F5F5}
 <footer data-np="1" data-pad="1" style="background:#050505;padding:80px clamp(24px,8vw,140px) 40px;border-top:1px solid #1d1d21">
   <div style="max-width:1400px;margin:0 auto;display:flex;flex-wrap:wrap;gap:40px;justify-content:space-between">
     <div><div style="font-family:'Space Grotesk','Inter Tight',sans-serif;font-weight:700;letter-spacing:.1em;font-size:40px;">VÉLOCE</div><div style="margin-top:8px;font-size:12px;letter-spacing:.38em;color:#FF8A00;font-weight:700">ALÉM DA VELOCIDADE.</div></div>
-    <nav style="display:flex;flex-wrap:wrap;gap:14px 30px;align-content:flex-start">
-      <sc-for list="{{ links }}" as="l" hint-placeholder-count="9"><a href="#{{ l.id }}" style="font-size:12px;letter-spacing:.22em;font-weight:600;color:#8E8E93" style-hover="color:#FF6A00">{{ l.t }}</a></sc-for>
+    <nav style="display:flex;flex-wrap:wrap;gap:0 30px;align-content:flex-start">
+      <sc-for list="{{ links }}" as="l" hint-placeholder-count="9"><a href="#{{ l.id }}" style="font-size:12px;letter-spacing:.22em;font-weight:600;color:#8E8E93;display:inline-flex;align-items:center;min-height:44px" style-hover="color:#FF6A00">{{ l.t }}</a></sc-for>
     </nav>
   </div>
   <div style="max-width:1400px;margin:60px auto 0;font-size:12px;color:#8E8E93;line-height:1.8">© 2026 VÉLOCE AUTOMOTIVE.<br>Marca e veículo fictícios. Projeto conceitual desenvolvido para fins educacionais.</div>
@@ -230,8 +250,8 @@ a{color:#FF8A00;text-decoration:none}a:hover{color:#F5F5F5}
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { progress: 0, scrolled: false, menu: false, mode: 1, acc: 0, spec: 0, lb: -1 };
-  links = [{id:'home',t:'INÍCIO'},{id:'one',t:'O VEÍCULO'},{id:'performance',t:'PERFORMANCE'},{id:'technology',t:'TECNOLOGIA'},{id:'design',t:'DESIGN'},{id:'specs',t:'ESPECIFICAÇÕES'},{id:'gallery',t:'GALERIA'},{id:'brand',t:'SOBRE A VÉLOCE'},{id:'final',t:'PRÓXIMA ERA'}];
+  state = { progress: 0, scrolled: false, menu: false, mode: 1, acc: 0, spec: 0, lb: -1, faq: -1 };
+  links = [{id:'home',t:'INÍCIO'},{id:'one',t:'O VEÍCULO'},{id:'performance',t:'PERFORMANCE'},{id:'technology',t:'TECNOLOGIA'},{id:'design',t:'DESIGN'},{id:'specs',t:'ESPECIFICAÇÕES'},{id:'gallery',t:'GALERIA'},{id:'brand',t:'SOBRE A VÉLOCE'},{id:'faq',t:'PERGUNTAS'},{id:'final',t:'PRÓXIMA ERA'}];
   heroSpecs = [{v:'1.020',u:'hp',l:'Potência máxima'},{v:'2,1',u:'s',l:'0–100 km/h'},{v:'410',u:'km/h',l:'Velocidade máxima projetada'}];
   stats = [{n:1020,d:0,u:'hp',l:'Potência'},{n:1350,d:0,u:'Nm',l:'Torque projetado'},{n:2.1,d:1,u:'s',l:'0 a 100 km/h'},{n:410,d:0,u:'km/h',l:'Velocidade máxima projetada'}];
   perf = [
@@ -272,6 +292,13 @@ class Component extends DCLogic {
     {src:'assets/side.png',t:'PERFIL',col:'span 3',ar:'16/10',pos:'50% 56%'},
     {src:'assets/rear34.png',t:'TRASEIRA 3/4',col:'span 3',ar:'16/10',pos:'50% 60%'},
     {src:'assets/front.png',t:'FRENTE',col:'span 6',ar:'21/9',pos:'50% 55%'}
+  ];
+  faq = [
+    ['O VÉLOCE ONE já está à venda?','Não. O VÉLOCE ONE é um conceito: todos os números desta página são projetados e fictícios, e não há data ou preço de lançamento.'],
+    ['Qual é a autonomia estimada?','A estimativa conceitual é de 650 km, com bateria de 120 kWh em arquitetura de classe 800 V.'],
+    ['Quanto tempo leva uma recarga?','A recarga DC máxima projetada é de 350 kW. O tempo real dependeria da infraestrutura e da temperatura da bateria.'],
+    ['Quais são os modos de condução?','Urbano, Esportivo e Pista, que ajustam resposta do pedal, suspensão, regeneração e distribuição de torque.'],
+    ['A VÉLOCE é uma marca real?','Não. VÉLOCE é uma marca fictícia e esta página é um exercício conceitual.']
   ];
   brand = [
     {t:'A VISÃO DE PERFORMANCE ELÉTRICA',d:'Acreditamos que potência elétrica pode ser tão emocionante quanto qualquer motor de combustão, com resposta imediata e controle total.'},
@@ -319,6 +346,7 @@ class Component extends DCLogic {
       gal: this.gal.map((g, i) => ({ ...g, open: () => this.setState({ lb: i }) })),
       imgIn: e => { const i = e.currentTarget; i.style.transform = 'scale(1.06)'; i.style.filter = 'brightness(1.1)'; },
       imgOut: e => { const i = e.currentTarget; i.style.transform = 'none'; i.style.filter = 'brightness(.85)'; },
+      faqItems: this.faq.map((f, i) => { const o = s.faq === i; return { q: f[0], a: f[1], open: o, fg: o ? '#FF6A00' : '#F5F5F5', rot: o ? 'rotate(45deg)' : 'none', rows: o ? '1fr' : '0fr', click: () => this.setState({ faq: o ? -1 : i }) }; }),
       brand: this.brand,
       lbOpacity: s.lb >= 0 ? 1 : 0, lbPE: s.lb >= 0 ? 'auto' : 'none', lbScale: s.lb >= 0 ? 'scale(1)' : 'scale(.92)',
       lbSrc: lbi.src, lbTitle: lbi.t, lbCount: (Math.max(s.lb, 0) + 1) + ' / ' + this.gal.length,
